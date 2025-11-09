@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "@/constants";
 
 interface ReviewSectionProps {
     propertyId: string;
@@ -20,7 +21,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ propertyId }) => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`/api/properties/${propertyId}/reviews`);
+                const response = await axios.get(`${API_BASE_URL}/properties/${propertyId}/reviews`);
 
                 // Handle API response structure
                 if (response.data.success) {

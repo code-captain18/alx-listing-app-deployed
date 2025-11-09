@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { PropertyCard } from "@/components/common";
 import { PropertyProps } from "@/interfaces";
+import { API_BASE_URL } from "@/constants";
 
 interface PropertyWithId extends PropertyProps {
   id: string;
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get("/api/properties");
+        const response = await axios.get(`${API_BASE_URL}/properties`);
         if (response.data.success) {
           setProperties(response.data.data);
         } else {
@@ -58,17 +59,17 @@ export default function Home() {
             Discover amazing properties for your next vacation
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {properties.map((property) => (
-            <PropertyCard 
-              key={property.id} 
-              property={property} 
+            <PropertyCard
+              key={property.id}
+              property={property}
               onClick={() => handlePropertyClick(property.id)}
             />
           ))}
         </div>
-        
+
         {properties.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">🏠</div>

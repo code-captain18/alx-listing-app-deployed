@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { PropertyDetail } from "@/components/property";
+import { API_BASE_URL } from "@/constants";
 
 export default function PropertyDetailPage() {
     const router = useRouter();
@@ -13,7 +14,7 @@ export default function PropertyDetailPage() {
         const fetchProperty = async () => {
             if (!id) return;
             try {
-                const response = await axios.get(`/api/properties/${id}`);
+                const response = await axios.get(`${API_BASE_URL}/properties/${id}`);
                 // Handle the API response structure
                 if (response.data.success) {
                     setProperty(response.data.data);
