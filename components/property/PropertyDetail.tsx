@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { PropertyProps } from '../../interfaces';
 import { PLACEHOLDER_IMAGES } from '../../constants';
 import ReviewSection from './ReviewSection';
@@ -10,6 +11,11 @@ interface PropertyDetailProps {
 
 const PropertyDetail: React.FC<PropertyDetailProps> = ({ property }) => {
     const { name, address, rating, price, image, discount, offers, category } = property;
+    const router = useRouter();
+
+    const handleBookNow = () => {
+        router.push('/booking');
+    };
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -196,7 +202,10 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({ property }) => {
                                     </div>
 
                                     {/* Book Now Button */}
-                                    <button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                                    <button
+                                        onClick={handleBookNow}
+                                        className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                                    >
                                         Book Now
                                     </button>
 

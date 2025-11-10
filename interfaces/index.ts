@@ -101,3 +101,25 @@ export interface PropertyCardProps {
   onClick?: () => void;
   className?: string;
 }
+
+// BookingForm component props
+export interface BookingFormProps {
+  formData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    cardNumber: string;
+    expirationDate: string;
+    cvv: string;
+    streetAddress?: string;
+    city?: string;
+    state?: string;
+    zipCode?: string;
+    country?: string;
+  };
+  loading: boolean;
+  error: string | null;
+  onSubmit: (e: React.FormEvent) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
